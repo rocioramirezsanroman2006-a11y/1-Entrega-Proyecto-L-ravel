@@ -1,0 +1,157 @@
+/* TechPink Theme - Rosa Personalizado */
+
+:root {
+    --pink-primary: #ff1493;
+    --pink-light: #ff69b4;
+    --pink-dark: #c71585;
+    --pink-pale: #ffc0cb;
+}
+
+/* Navbar Rosa */
+.navbar-danger {
+    background-color: #ff1493 !important;
+    background-color: var(--pink-primary) !important;
+}
+
+.navbar-danger .navbar-brand {
+    color: #fff !important;
+    font-weight: bold;
+    font-size: 1.3rem;
+}
+
+/* Sidebar Rosa */
+.sidebar-dark-danger {
+    background-color: #c71585 !important;
+    background-color: var(--pink-dark) !important;
+}
+
+.sidebar-dark-danger .nav-link {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.sidebar-dark-danger .nav-link:hover,
+.sidebar-dark-danger .nav-link.active {
+    background-color: rgba(255, 20, 147, 0.5) !important;
+    color: #fff !important;
+}
+
+/* Botones Rosa */
+.btn-danger,
+.btn-outline-danger {
+    background-color: #ff1493 !important;
+    background-color: var(--pink-primary) !important;
+    border-color: #ff1493 !important;
+    color: #fff !important;
+}
+
+.btn-danger:hover,
+.btn-outline-danger:hover {
+    background-color: var(--pink-dark) !important;
+    border-color: var(--pink-dark) !important;
+}
+
+/* Cards con bordes rosa */
+.card-outline-danger {
+    border-top: 3px solid #ff1493 !important;
+    border-top-color: var(--pink-primary) !important;
+}
+
+/* Badges rosa */
+.badge-danger {
+    background-color: #ff1493 !important;
+    background-color: var(--pink-primary) !important;
+}
+
+/* Links rosa */
+a {
+    color: #ff1493;
+}
+
+a:hover {
+    color: var(--pink-dark);
+}
+
+/* Headers rosa */
+.content-header {
+    border-bottom: 3px solid #ff1493 !important;
+    padding-bottom: 10px;
+}
+
+/* Botones de acciones rosa */
+.btn-info,
+.btn-primary {
+    background-color: #ff1493 !important;
+    border-color: #ff1493 !important;
+}
+
+.btn-info:hover,
+.btn-primary:hover {
+    background-color: var(--pink-dark) !important;
+    border-color: var(--pink-dark) !important;
+}
+
+/* Auth card rosa */
+.card-outline-primary {
+    border-top: 3px solid #ff1493 !important;
+}
+
+.card-header-primary {
+    background-color: #ff1493 !important;
+}
+
+/* Scrollbar rosa */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #ff1493;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--pink-dark);
+}
+
+/* Estado success con acento rosa */
+.alert-success {
+    background-color: #f0fff4;
+    border-color: #ff1493;
+    color: #22543d;
+}
+
+/* Tablas con hover rosa */
+tbody tr:hover {
+    background-color: rgba(255, 20, 147, 0.1) !important;
+}
+
+/* Título principal */
+.brand-link {
+    background-color: var(--pink-dark) !important;
+    color: #fff !important;
+}
+
+.brand-link:hover {
+    background-color: var(--pink-primary) !important;
+}
+
+/* Inputs con focus rosa */
+.form-control:focus,
+.form-select:focus {
+    border-color: #ff1493 !important;
+    box-shadow: 0 0 0 0.2rem rgba(255, 20, 147, 0.25) !important;
+}
+
+/* Dropdown rosa */
+.dropdown-menu {
+    border-top: 3px solid #ff1493;
+}
+
+.dropdown-item.active,
+.dropdown-item:active {
+    background-color: #ff1493 !important;
+}
