@@ -1,47 +1,22 @@
-# TechPink Hub - CRM Empresarial 💎
+# TechPink Hub - CRM Empresarial
 
-Aplicación web profesional de gestión empresarial desarrollada con **Laravel 12** e interfaz **AdminLTE 3** con tema rosa pastel personalizado. Proporciona un panel de control completo para administrar 5 módulos CRUD.
+## ¿Qué es esto?
 
----
+Es una aplicación web para gestionar cosas de una empresa. Básicamente puedes hacer CRUD de 5 cosas: clientes, productos, empleados, categorías y pedidos.
 
-## 📋 Descripción del Proyecto
+Lo hice con Laravel porque es el framework que tocaba en clase. La interfaz es con AdminLTE que viene con unos estilos ya listos, y le cambié los colores a rosa pastel porque quedaba bien.
 
-**TechPink Hub** es un CRM (Customer Relationship Management) moderno para gestionar información empresarial completa. Incluye gestión de clientes, productos, empleados, categorías y pedidos.
+Tiene login, así que tienes que identificarte para entrar. Después de eso ves un dashboard que te muestra cuántos clientes, productos, empleados y pedidos tienes. Desde ahí puedes ir a cada módulo.
 
-### Módulos Incluidos
+Cada módulo es igual: una tabla que te muestra todos los registros, y botones para crear, editar o eliminar. Nada complicado.
 
-- **👥 Clientes** - Gestión completa de clientes con contacto
-- **👔 Empleados** - Control de empleados y salarios en €
-- **📦 Productos** - Catálogo con precios y stock
-- **🏷️ Categorías** - Clasificación de productos
-- **🛒 Pedidos** - Gestión de pedidos con seguimiento
+La base de datos tiene 5 tablas principales (clientes, productos, empleados, categorías, pedidos) y otras que Laravel crea por defecto. Los productos están relacionados con categorías, y los pedidos con clientes.
 
-### ✨ Características
-
-✅ **5 Módulos CRUD** completos y funcionales  
-✅ **Autenticación Segura** - Sistema de login con Laravel Auth  
-✅ **Base de Datos Relacional** - MySQL con migraciones  
-✅ **Interfaz Profesional** - AdminLTE 3 + Bootstrap 5  
-✅ **Tema Personalizado** - Rosa pastel moderno (#FFB6D9)  
-✅ **Datos de Prueba** - Seeders precargados  
-✅ **Responsive Design** - Funciona en móvil y escritorio  
+Viene con datos de prueba ya metidos, así que cuando abras la app ya ves 5 clientes, 8 productos, 5 empleados, etc. No tienes que crear nada si no quieres, simplemente puedes probar todo que ya funciona.
 
 ---
 
-## 🛠️ Requisitos Técnicos
-
-| Software | Versión | Cómo instalar |
-|----------|---------|---------------|
-| **PHP** | 8.1+ | Incluido en XAMPP |
-| **MySQL** | 5.7+ | Incluido en XAMPP |
-| **Composer** | Latest | https://getcomposer.org/ |
-| **Node.js** | 18+ | Opcional |
-
-**Forma más fácil:** Descargar XAMPP → https://www.apachefriends.org/
-
----
-
-## 📦 Pasos de Instalación
+## ¿Qué necesito?
 
 ### 1️⃣ Clonar o Descargar Proyecto
 
@@ -126,7 +101,246 @@ php artisan serve
 
 ---
 
-## 📊 Datos Precargados
+## � Pantallas y Navegación
+
+### 1️⃣ Pantalla de Login
+**URL:** `http://localhost:8000/login`
+
+- Interfaz moderna con tema rosa pastel
+- Campos: Email y Contraseña
+- Botón "Iniciar Sesión"
+- Enlace para recuperar contraseña
+
+**Credenciales:**
+```
+Email: admin@example.com
+Contraseña: password
+```
+
+---
+
+### 2️⃣ Dashboard Principal (Home)
+**URL:** `http://localhost:8000/home`
+
+Pantalla inicial después de login con:
+
+- **Encabezado:** "¡Bienvenido, Admin!" con tema gradiente rosa
+- **4 Tarjetas de Estadísticas:**
+  - 👥 **Total Clientes:** 5 (Azul Pastel)
+  - 👔 **Total Empleados:** 5 (Púrpura Pastel)
+  - 📦 **Total Productos:** 8 (Verde Pastel)
+  - 🛒 **Total Pedidos:** 5 (Rosa Pastel)
+
+Cada tarjeta tiene:
+- Icono descriptivo
+- Número de registros
+- Botón "Ver todos" para ir al módulo correspondiente
+
+---
+
+### 3️⃣ Menú Lateral (Sidebar)
+
+**Color:** Rosa pastel (#F5B3D4)
+
+**Opciones del menú:**
+```
+HOME              🏠 Dashboard
+CATEGORÍAS        🏷️ Listar/Crear categorías
+CLIENTES          👥 Listar/Crear clientes
+EMPLEADOS         👔 Listar/Crear empleados
+PRODUCTOS         📦 Listar/Crear productos
+PEDIDOS           🛒 Listar/Crear pedidos
+CERRAR SESIÓN     🚪 Logout
+```
+
+Cada módulo tiene acceso rápido a:
+- Listar todos los registros
+- Crear nuevo registro
+
+---
+
+### 4️⃣ Módulo Clientes
+**URL:** `http://localhost:8000/clientes`
+
+#### Lista de Clientes
+- **Encabezado:** Rosa con ícono 👥
+- **Tabla con columnas:**
+  - ID (Badge Azul Pastel)
+  - Nombre (Negrita)
+  - Email (Enlace)
+  - Teléfono
+  - Empresa
+  - Acciones (Ver, Editar, Eliminar)
+
+- **Botón Crear:** "Nuevo Cliente" (Azul Pastel)
+
+#### Crear/Editar Cliente
+Formulario con campos:
+- Nombre* (requerido)
+- Email* (requerido, único)
+- Teléfono
+- Dirección
+- Ciudad
+- Código Postal
+- Empresa
+
+---
+
+### 5️⃣ Módulo Productos
+**URL:** `http://localhost:8000/productos`
+
+#### Lista de Productos
+- **Encabezado:** Verde pastel con ícono 📦
+- **Tabla con columnas:**
+  - ID (Badge Verde)
+  - Nombre
+  - Descripción (Truncada)
+  - Precio: €XX.XX (Verde)
+  - Stock
+  - Categoría
+  - Acciones
+
+- **Botón Crear:** "Nuevo Producto" (Verde Pastel)
+
+#### Crear/Editar Producto
+Formulario con campos:
+- Nombre* (requerido)
+- Descripción
+- Precio*€ (requerido)
+- Stock* (requerido)
+- Categoría* (Dropdown)
+
+---
+
+### 6️⃣ Módulo Empleados
+**URL:** `http://localhost:8000/empleados`
+
+#### Lista de Empleados
+- **Encabezado:** Púrpura pastel con ícono 👔
+- **Tabla con columnas:**
+  - ID (Badge Púrpura)
+  - Nombre
+  - Email (Enlace)
+  - Teléfono
+  - Puesto
+  - Departamento
+  - Salario: €XXXX.XX (Púrpura)
+  - Acciones
+
+- **Botón Crear:** "Nuevo Empleado" (Púrpura Pastel)
+
+#### Crear/Editar Empleado
+Formulario con campos:
+- Nombre* (requerido)
+- Email* (requerido, único)
+- Teléfono
+- Puesto* (requerido)
+- Departamento
+- Fecha Contratación
+- Salario* (requerido)
+
+---
+
+### 7️⃣ Módulo Categorías
+**URL:** `http://localhost:8000/categorias`
+
+#### Lista de Categorías
+- **Encabezado:** Amarillo pastel con ícono 🏷️
+- **Tabla con columnas:**
+  - ID (Badge Amarillo)
+  - Nombre
+  - Descripción (Truncada)
+  - Acciones
+
+- **Botón Crear:** "Nueva Categoría" (Amarillo Pastel)
+
+#### Crear/Editar Categoría
+Formulario simple:
+- Nombre* (requerido, único)
+- Descripción
+
+---
+
+### 8️⃣ Módulo Pedidos
+**URL:** `http://localhost:8000/pedidos`
+
+#### Lista de Pedidos
+- **Encabezado:** Rosa pastel con ícono 🛒
+- **Tabla con columnas:**
+  - ID (Badge Rosa)
+  - Número Pedido
+  - Cliente
+  - Fecha Pedido
+  - Fecha Entrega
+  - Total: €XXXX.XX (Rosa)
+  - Estado (Badges de colores)
+  - Acciones
+
+**Estados y Colores:**
+- 🔴 Pendiente (Rojo)
+- 🟡 En Proceso (Amarillo)
+- 🟢 Completado (Verde)
+- Cancelado (Gris)
+
+- **Botón Crear:** "Nuevo Pedido" (Rosa Pastel)
+
+#### Crear/Editar Pedido
+Formulario con campos:
+- Número Pedido* (requerido, único)
+- Cliente* (Dropdown)
+- Fecha Pedido* (requerido)
+- Fecha Entrega
+- Total*€ (requerido)
+- Estado* (Dropdown: Pendiente, En Proceso, Completado, Cancelado)
+- Descripción
+
+---
+
+## 🎨 Esquema de Colores
+
+| Módulo | Color Pastel | Código | Usar Para |
+|--------|-------------|--------|-----------|
+| Principal | Rosa Claro | #FFD6E8 | Navbar, Headers |
+| Clientes | Azul Pastel | #D6E8F5 | Headers, Badges |
+| Productos | Verde Pastel | #D6F5E8 | Headers, Badges |
+| Empleados | Púrpura Pastel | #E8D6F5 | Headers, Badges |
+| Categorías | Amarillo Pastel | #F5F0D6 | Headers, Badges |
+| Pedidos | Rosa Pastel | #FFD6E8 | Headers, Badges |
+
+---
+
+## ⚡ Funcionalidades en Cada Pantalla
+
+### Listar (Index)
+- ✅ Tabla con todos los registros
+- ✅ Paginación si hay muchos registros
+- ✅ Botón "Nuevo" para crear
+- ✅ Botones de acciones: Ver, Editar, Eliminar
+- ✅ Mensajes de éxito/error
+- ✅ Campo de búsqueda (opcional)
+
+### Crear (Create)
+- ✅ Formulario vacío
+- ✅ Validación de campos requeridos
+- ✅ Validación de emails únicos
+- ✅ Guardado en BD
+- ✅ Redirección a lista con mensaje de éxito
+
+### Editar (Edit)
+- ✅ Formulario pre-rellenado con datos
+- ✅ Mismas validaciones que crear
+- ✅ Actualización en BD
+- ✅ Redirección a lista con mensaje
+
+### Eliminar (Delete)
+- ✅ Confirmación antes de eliminar
+- ✅ Eliminación en cascada (relaciones)
+- ✅ Mensaje de éxito
+- ✅ Redirección a lista
+
+---
+
+## 📊 Datos de Prueba (25+ registros)
 
 | Tabla | Cantidad | Descripción |
 |-------|----------|-------------|
