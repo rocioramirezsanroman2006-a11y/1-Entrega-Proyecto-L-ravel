@@ -12,7 +12,7 @@ class EmpleadoController extends Controller
      */
     public function index()
     {
-        $empleados = Empleado::all();
+        $empleados = Empleado::paginate(10);
         return view('empleados.index', compact('empleados'));
     }
 
@@ -39,7 +39,15 @@ class EmpleadoController extends Controller
             'fecha_inicio' => 'required|date',
         ]);
 
-        Empleado::create($request->all());
+        Empleado::create([
+            'nombre' => $request->nombre,
+            'apellido' => $request->apellido,
+            'email' => $request->email,
+            'puesto' => $request->puesto,
+            'salario' => $request->salario,
+            'telefono' => $request->telefono,
+            'fecha_contratacion' => $request->fecha_inicio,
+        ]);
 
         return redirect()->route('empleados.index')
                         ->with('success', 'Empleado creado exitosamente.');
@@ -76,7 +84,15 @@ class EmpleadoController extends Controller
             'fecha_inicio' => 'required|date',
         ]);
 
-        $empleado->update($request->all());
+        $empleado->update([
+            'nombre' => $request->nombre,
+            'apellido' => $request->apellido,
+            'email' => $request->email,
+            'puesto' => $request->puesto,
+            'salario' => $request->salario,
+            'telefono' => $request->telefono,
+            'fecha_contratacion' => $request->fecha_inicio,
+        ]);
 
         return redirect()->route('empleados.index')
                         ->with('success', 'Empleado actualizado exitosamente.');
@@ -87,6 +103,11 @@ class EmpleadoController extends Controller
      */
     public function destroy(Empleado $empleado)
     {
+        // Check if user has permission
+        if (!auth()->user()->isAdmin()) {
+            return redirect()->route('empleados.index')->with('error', 'No tiene permisos para eliminar empleados.');
+        }
+
         $empleado->delete();
 
         return redirect()->route('empleados.index')

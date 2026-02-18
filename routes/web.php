@@ -19,7 +19,7 @@ Route::middleware(['auth'])->group(function () {
     Route::put('/clientes/{cliente}', [App\Http\Controllers\ClientesController::class, 'update'])->name('clientes.update');
     Route::delete('/clientes/{cliente}', [App\Http\Controllers\ClientesController::class, 'destroy'])->name('clientes.destroy');
 
-    Route::resource('productos', App\Http\Controllers\ProductosController::class);
+    Route::resource('productos', App\Http\Controllers\ProductoController::class);
     Route::resource('empleados', App\Http\Controllers\EmpleadoController::class);
     Route::resource('categorias', App\Http\Controllers\CategoriaController::class);
     Route::resource('pedidos', App\Http\Controllers\PedidoController::class);

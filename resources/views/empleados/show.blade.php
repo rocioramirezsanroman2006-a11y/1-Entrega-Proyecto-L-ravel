@@ -31,7 +31,7 @@
                     </div>
                     <div class="mb-3">
                         <strong>Fecha de Inicio:</strong>
-                        <p>{{ $empleado->fecha_inicio->format('d/m/Y') }}</p>
+                        <p>{{ $empleado->fecha_contratacion ? $empleado->fecha_contratacion->format('d/m/Y') : 'N/A' }}</p>
                     </div>
                     <div class="mt-4">
                         <a href="{{ route('empleados.edit', $empleado->id) }}" class="btn btn-primary">Editar</a>

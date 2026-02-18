@@ -10,6 +10,7 @@ class Empleado extends Model
 
     protected $fillable = [
         'nombre',
+        'apellido',
         'email',
         'telefono',
         'puesto',
@@ -23,4 +24,12 @@ class Empleado extends Model
     ];
 
     public $timestamps = true;
+
+    /**
+     * Accessor: permite usar $empleado->fecha_inicio como alias de fecha_contratacion
+     */
+    public function getFechaInicioAttribute()
+    {
+        return $this->fecha_contratacion;
+    }
 }

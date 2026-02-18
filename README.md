@@ -160,6 +160,89 @@ php artisan serve --port=8080
 chmod -R 755 storage/ bootstrap/cache/
 ```
 
+## Segunda Entrega - Nuevas Funcionalidades
+
+### ✨ Características Implementadas
+
+#### 1. Sistema de Roles y Permisos
+
+El sistema ahora distingue entre dos tipos de usuarios:
+
+- **Admin**: Puede crear, editar, y **eliminar** registros
+- **Usuario Regular**: Puede crear y editar, pero **no puede eliminar**
+
+Los botones de eliminar se muestran/ocultan automáticamente según el rol del usuario logeado.
+
+**Cómo funciona:**
+```php
+@if(auth()->user()->isAdmin())
+    <!-- Mostrar botón de eliminar -->
+@endif
+```
+
+#### 2. Subida de Archivos e Imágenes
+
+Los módulos de Clientes y Productos ahora soportan archivos:
+
+**Clientes:**
+- Foto de perfil (JPEG, PNG, JPG, GIF - máx. 2MB)
+- Se guarda en `public/storage/clientes/`
+
+**Productos:**
+- Imagen del producto (JPEG, PNG, JPG, GIF - máx. 2MB)
+- PDF con información adicional (máx. 5MB)
+- Se guardan en `public/storage/productos/`
+
+En los formularios de crear/editar verás campos de archivo con vista previa de los archivos actuales.
+
+**Primero, ejecuta esto para crear el enlace al almacenamiento:**
+```bash
+php run_migrations.php
+# O manualmente en Windows:
+mklink /J public\storage storage\app\public
+```
+
+#### 3. Paginación
+
+Todas las vistas de índice ahora muestran 15 registros por página en lugar de todos:
+
+- Clientes: 15 por página
+- Productos: 15 por página
+- Empleados: 15 por página
+- Categorías: 15 por página
+- Pedidos: 15 por página
+
+Al final de cada tabla verás los números de página para navegar.
+
+#### 4. Control de Acceso en Vistas
+
+Los botones de acción ahora respetan el rol del usuario:
+
+- **Botones Ver y Editar**: Visibles para todos (Admin y Usuario Regular)
+- **Botón Eliminar**: Solo para Admin
+
+#### 5. Modelos y Migraciones
+
+Se han creado nuevas tablas en la base de datos:
+
+- **roles**: Tabla para almacenar roles (Admin, Usuario)
+- **permissions**: Tabla para almacenar permisos
+- **role_user**: Tabla pivote para asignar roles a usuarios
+- **permission_role**: Tabla pivote para asignar permisos a roles
+
+Se han agregado columnas a tablas existentes:
+- **clientes.foto**: Para almacenar la ruta de la foto
+- **productos.imagen**: Para almacenar la ruta de la imagen
+- **productos.archivo_pdf**: Para almacenar la ruta del PDF
+
+### 🚀 próximos Pasos (Futuras Mejoras)
+
+- DataTables con búsqueda avanzada y ordenamiento
+- Exportar datos a Excel/PDF
+- Gráficos y reportes estadísticos
+- Panel de administrador con más opciones
+- Historial de cambios
+
 ## Comandos útiles
 
 Resetear todo (borra datos):

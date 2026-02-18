@@ -13,7 +13,7 @@ class PedidoController extends Controller
      */
     public function index()
     {
-        $pedidos = Pedido::with('cliente')->get();
+        $pedidos = Pedido::with('cliente')->paginate(10);
         return view('pedidos.index', compact('pedidos'));
     }
 
@@ -86,6 +86,11 @@ class PedidoController extends Controller
      */
     public function destroy(Pedido $pedido)
     {
+        // Check if user has permission
+        if (!auth()->user()->isAdmin()) {
+            return redirect()->route('pedidos.index')->with('error', 'No tiene permisos para eliminar pedidos.');
+        }
+
         $pedido->delete();
 
         return redirect()->route('pedidos.index')

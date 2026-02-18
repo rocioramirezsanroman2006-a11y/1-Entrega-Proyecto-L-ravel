@@ -5,10 +5,10 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Crear Nuevo Usuario</div>
+                <div class="card-header">Crear Nuevo Cliente</div>
 
                 <div class="card-body">
-                    <form action="{{ route('clientes.store') }}" method="POST">
+                    <form action="{{ route('clientes.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
 
                         <div class="form-group mb-3">
@@ -47,10 +47,20 @@
                         </div>
 
                         <div class="form-group mb-3">
-                            <label for="dirección">Dirección</label>
+                            <label for="direccion">Dirección</label>
                             <textarea class="form-control @error('direccion') is-invalid @enderror" 
                                       id="direccion" name="direccion" rows="3">{{ old('direccion') }}</textarea>
                             @error('direccion')
+                                <span class="invalid-feedback">{{ $message }}</span>
+                            @enderror
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label for="foto">Foto de Perfil</label>
+                            <input type="file" class="form-control @error('foto') is-invalid @enderror" 
+                                   id="foto" name="foto" accept="image/*">
+                            <small class="form-text text-muted">Archivos permitidos: JPEG, PNG, JPG, GIF (máx. 2MB)</small>
+                            @error('foto')
                                 <span class="invalid-feedback">{{ $message }}</span>
                             @enderror
                         </div>

@@ -29,6 +29,7 @@ class DatabaseSeeder extends Seeder
             EmpleadosSeeder::class,
             ProductosSeederData::class,
             PedidosSeeder::class,
+            RolesAndPermissionsSeeder::class,
         ]);
 
         \Log::info('Base de datos poblada correctamente');

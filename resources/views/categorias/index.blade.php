@@ -23,10 +23,18 @@
         </div>
     @endif
 
+    @if ($message = Session::get('error'))
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <i class="fas fa-exclamation-circle mr-2"></i>
+            <strong>¡Error!</strong> {{ $message }}
+            <button type="button" class="close" data-dismiss="alert">×</button>
+        </div>
+    @endif
+
     <!-- Table Card -->
     <div class="card" style="border-top: 4px solid #F5F0D6;">
         <div class="card-header" style="background-color: #F5F0D6;">
-            <h3 class="card-title" style="color: #8B8B4D;">🏷️ Listado de Categorías ({{ $categorias->count() }})</h3>
+            <h3 class="card-title" style="color: #8B8B4D;">🏷️ Listado de Categorías</h3>
             <div class="card-tools">
                 <button type="button" class="btn btn-tool" data-card-widget="collapse">
                     <i class="fas fa-minus"></i>
@@ -35,13 +43,13 @@
         </div>
         <div class="card-body p-0">
             <div class="table-responsive">
-                <table class="table table-striped table-hover mb-0">
+                <table id="tablacat" class="table table-hover mb-0">
                     <thead class="bg-light">
                         <tr>
-                            <th width="50">ID</th>
+                            <th>ID</th>
                             <th>Nombre</th>
                             <th>Descripción</th>
-                            <th width="120" class="text-center">Acciones</th>
+                            <th class="text-center">Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -57,6 +65,7 @@
                                     <a href="{{ route('categorias.edit', $categoria->id) }}" class="btn btn-sm btn-warning" title="Editar">
                                         <i class="fas fa-edit"></i>
                                     </a>
+                                    @if(auth()->user()->isAdmin())
                                     <form action="{{ route('categorias.destroy', $categoria->id) }}" method="POST" class="d-inline">
                                         @csrf
                                         @method('DELETE')
@@ -64,6 +73,7 @@
                                             <i class="fas fa-trash"></i>
                                         </button>
                                     </form>
+                                    @endif
                                 </td>
                             </tr>
                         @empty
@@ -77,6 +87,25 @@
                 </table>
             </div>
         </div>
+        <!-- Paginación Laravel -->
+        <div class="card-footer">
+            {{ $categorias->links() }}
+        </div>
     </div>
 </div>
 @endsection
+
+@push('js')
+<script>
+    $(function() {
+        $('#tablacat').DataTable({
+            "language": {
+                "url": "//cdn.datatables.net/plug-ins/1.10.19/i18n/Spanish.json"
+            },
+            "paging": false,
+            "info": false,
+            "responsive": true
+        });
+    });
+</script>
+@endpush

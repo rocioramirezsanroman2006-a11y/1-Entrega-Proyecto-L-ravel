@@ -69,7 +69,7 @@
                         <div class="form-group mb-3">
                             <label for="fecha_inicio">Fecha de Inicio</label>
                             <input type="date" class="form-control @error('fecha_inicio') is-invalid @enderror" 
-                                   id="fecha_inicio" name="fecha_inicio" value="{{ old('fecha_inicio', $empleado->fecha_inicio) }}" required>
+                                   id="fecha_inicio" name="fecha_inicio" value="{{ old('fecha_inicio', $empleado->fecha_contratacion ? $empleado->fecha_contratacion->format('Y-m-d') : '') }}" required>
                             @error('fecha_inicio')
                                 <span class="invalid-feedback">{{ $message }}</span>
                             @enderror

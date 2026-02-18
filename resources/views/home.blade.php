@@ -9,6 +9,12 @@
                 <div class="card-body">
                     <h2 style="color: #8B4D6D;" class="mb-2">💎 ¡Bienvenido, {{ Auth::user()->name }}!</h2>
                     <p style="color: #A87BA8;">Panel de Control - TechPink Hub Gestión Empresarial</p>
+                    <p style="color: #8B4D6D;">
+                        <i class="fas fa-user-shield"></i> Rol: 
+                        @foreach(Auth::user()->roles as $role)
+                            <span class="badge badge-{{ $role->name == 'Admin' ? 'danger' : 'info' }}">{{ $role->name }}</span>
+                        @endforeach
+                    </p>
                 </div>
             </div>
         </div>

@@ -9,6 +9,12 @@
                     <h3>Detalles del Cliente</h3>
                 </div>
                 <div class="card-body">
+                    @if($cliente->foto)
+                        <div class="text-center mb-4">
+                            <img src="{{ asset('storage/' . $cliente->foto) }}" alt="Foto del cliente" 
+                                 style="width: 150px; height: 150px; border-radius: 50%; object-fit: cover; border: 3px solid #FFD6E8;">
+                        </div>
+                    @endif
                     <div class="mb-3">
                         <strong>Nombre:</strong>
                         <p>{{ $cliente->nombre }}</p>

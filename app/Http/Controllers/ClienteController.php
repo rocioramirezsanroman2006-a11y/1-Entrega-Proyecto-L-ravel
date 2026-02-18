@@ -1,35 +1,31 @@
 <?php
-namespace App\Http\Controllers;
 
+namespace App\Http\Controllers;
 
 use App\Models\Clientes;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
-
-class ClientesController extends Controller
+class ClienteController extends Controller
 {
     public function index()
     {
-        $clientes = Clientes::paginate(10);
+        $clientes = Clientes::paginate(15);
         return view('clientes.index', compact('clientes'));
     }
-
 
     public function create()
     {
         return view('clientes.create');
     }
 
-
     public function store(Request $request)
     {
         $validated = $request->validate([
             'nombre' => 'required|string|max:255',
-            'apellido' => 'required|string|max:255',
-            'email' => 'required|email|unique:clientes,email',
-            'telefono' => 'nullable|string|max:20',
-            'direccion' => 'nullable|string|max:255',
+            'email' => 'required|email|unique:clientes',
+            'telefono' => 'required|string|max:20',
+            'ciudad' => 'required|string|max:100',
             'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
@@ -41,33 +37,21 @@ class ClientesController extends Controller
         }
 
         Clientes::create($validated);
-
-
-        return redirect()->route('clientes.index')
-                         ->with('success', 'Cliente creado exitosamente.');
+        return redirect()->route('clientes.index')->with('success', 'Cliente creado correctamente.');
     }
-
-
-    public function show(Clientes $cliente)
-    {
-        return view('clientes.show', compact('cliente'));
-    }
-
 
     public function edit(Clientes $cliente)
     {
         return view('clientes.edit', compact('cliente'));
     }
 
-
     public function update(Request $request, Clientes $cliente)
     {
         $validated = $request->validate([
             'nombre' => 'required|string|max:255',
-            'apellido' => 'required|string|max:255',
             'email' => 'required|email|unique:clientes,email,' . $cliente->id,
-            'telefono' => 'nullable|string|max:20',
-            'direccion' => 'nullable|string|max:255',
+            'telefono' => 'required|string|max:20',
+            'ciudad' => 'required|string|max:100',
             'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
@@ -83,12 +67,8 @@ class ClientesController extends Controller
         }
 
         $cliente->update($validated);
-
-
-        return redirect()->route('clientes.index')
-                         ->with('success', 'Cliente actualizado exitosamente.');
+        return redirect()->route('clientes.index')->with('success', 'Cliente actualizado correctamente.');
     }
-
 
     public function destroy(Clientes $cliente)
     {
@@ -103,11 +83,6 @@ class ClientesController extends Controller
         }
 
         $cliente->delete();
-
-
-        return redirect()->route('clientes.index')
-                         ->with('success', 'Cliente eliminado exitosamente.');
+        return redirect()->route('clientes.index')->with('success', 'Cliente eliminado correctamente.');
     }
 }
-
-
